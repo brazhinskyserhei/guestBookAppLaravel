@@ -20,13 +20,14 @@
                         <strong class="d-block text-gray-dark">{{$comment->user['name']}}</strong>
                     @endif
                     {{$comment->text}}
+                    <strong class="d-block text-gray-dark"> {{$comment->created_at}}</strong>
                 </p>
             </div>
         @endforeach
 
 
     </div>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="paginate">
         <ul class="pagination justify-content-center">
             {{$comments->links()}}
         </ul>

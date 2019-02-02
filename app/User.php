@@ -36,4 +36,17 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+    public function changeStatus(){
+        if($this->status == 0) {
+            $this->status = 1;
+        }
+        else{
+            $this->status = 0;
+        }
+        $this->save();
+        return $this->status;
+    }
+
+
+
 }

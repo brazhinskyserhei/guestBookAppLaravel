@@ -28,12 +28,7 @@ class HomeController extends Controller
     {
         $comments = Comment::where('status', '0')->with('user')->paginate(10);
 
-
-        return view('index',compact('comments'));
+        return view('index', compact('comments'), ['title' => 'Главная']);
     }
 
-    public function profile()
-    {
-        return view('profile');
-    }
 }
