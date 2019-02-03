@@ -19,7 +19,7 @@
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td><img src="{{$user->image}}"
+                    <td><img width="50" height="50" src="{{$user->image}}"
                              class="avatar" alt="Avatar"> {{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>

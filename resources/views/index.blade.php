@@ -32,26 +32,24 @@
             {{$comments->links()}}
         </ul>
     </nav>
-    <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-dark rounded shadow-sm">
-        <div class="lh-100">
-            <h6 class="mb-0 text-white lh-100">Оставте комментарий</h6>
+
+    @if((Auth::user())&& (Auth::user()->status =='0'))
+        @include('form')
+    @elseif(!Auth::check())
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-dismissable">
+                    Чтобы оставить сообщение войдите или зарегестируйтесь
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="my-3 p-3 bg-white rounded shadow-sm">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail">Имя</label>
-                <input type="email" class="form-control" id="exampleInputEmail" placeholder="Введите имя">
+    @elseif(Auth::user()->status =='1')
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-danger">
+                    Ваш профиль забанен,вы не можете оставялть сообщения
+                </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail2">Комментарий</label>
-                <textarea class="form-control" rows="3" id="exampleInputEmail2"></textarea>
-            </div>
-            <button type="submit" class="btn btn-dark">Отправить</button>
-        </form>
-    </div>
+        </div>
+    @endif
 @endsection

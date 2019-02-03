@@ -18,18 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('profile', 'HomeController@profile')->name('profile');
 
-Route::get('comments', 'Admin\CommentsController@index')->name('comments.index');
-Route::delete('comments/{id}/destroy', 'Admin\CommentsController@destroy')->name('comments.destroy');
-Route::put('comments/{id}/change', 'Admin\UsersController@changeStatus')->name('comments.updateStatus');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::post('profile', 'ProfileController@store')->name('profile.store');
+    Route::post('comment', 'Admin\CommentsController@store')->name('comments.store');
 
+});
 
-Route::get('users', 'Admin\Userscontroller@index')->name('users.index');
-
-
-Route::group(['prefix'=>'admin','namespace'=>'Admin', 'middleware'	=>	'auth'], function(){
-
-
+Route::group(['namespace' => 'Admin', 'middleware' => 'admin'], function () {
+    Route::get('comments', 'CommentsController@index')->name('comments.index');
+    Route::delete('comments/{id}/destroy', 'CommentsController@destroy')->name('comments.destroy');
+    Route::put('comments/{id}/change', 'UsersController@changeStatus')->name('comments.updateStatus');
+    Route::get('users', 'UsersController@index')->name('users.index');
 });
 

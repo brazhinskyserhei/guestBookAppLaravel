@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Comment extends Model
 {
-    protected $fillable = ['email','text','created_at'];
+    protected $fillable = ['email','text','created_at','user_id'];
 
     public function user()
     {

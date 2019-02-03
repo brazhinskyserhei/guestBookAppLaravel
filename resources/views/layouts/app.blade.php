@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title>Гостевая книга</title>
 
     <link href="{{ asset('assets/bootstrap-4.2.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
@@ -19,6 +19,11 @@
 <body class="bg-light">
 <nav class="navbar navbar-expand-md  navbar-dark bg-dark">
     <a class="navbar-brand" href="{{ url('/') }}">Гостевая книга</a>
+    @if(!Auth::guest())
+        @if(Auth::user()->is_admin)
+            <a class="navbar-brand" href="{{ url('/comments') }}">В админку</a>
+        @endif
+    @endif
     <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -36,14 +41,14 @@
                     <a class="btn btn-outline-info" href="{{ route('register') }}">{{ __('Регистрация') }}</a>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    <a class="btn btn-outline-info" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
-                    <a class="btn btn-outline-info" href="{{ route('logout') }}" onclick="event.preventDefault();
+
+                <a class="btn btn-outline-info" href="{{ route('profile') }}">{{ Auth::user()->name }}</a>
+                <a class="btn btn-outline-info" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Выйти') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                </li>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
             @endguest
         </nav>
     </div>

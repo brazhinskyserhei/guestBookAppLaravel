@@ -19,7 +19,7 @@
             <tbody>
             @foreach($comments as $comment)
                 <tr>
-                    <td><img src="{{$comment->user['image']}}" class="avatar"
+                    <td><img width="50" height="50" src="{{$comment->user['image']}}" class="avatar"
                              alt="Avatar">{{$comment->user['name'] }}
                     </td>
                     <td>{{$comment->created_at}}</td>
