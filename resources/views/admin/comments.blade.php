@@ -28,7 +28,8 @@
                         <form method="POST" action="{{ route('comments.destroy',$comment->id) }}">
                             @csrf
                             @method('DELETE')
-                            <button onclick="return confirm('Вы уверены что хотите удалить?')" type="submit" class="btn btn-dange"
+                            <button onclick="return confirm('Вы уверены что хотите удалить?')" type="submit"
+                                    class="btn btn-dange"
                                     title="Удалить" data-toggle="tooltip">
                                 <i class='fas fa-trash' style='font-size:18px;color:red'></i>
                             </button>

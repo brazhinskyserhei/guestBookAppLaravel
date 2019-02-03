@@ -35,7 +35,8 @@
                         <form method="POST" action="{{ route('comments.updateStatus',$user->id) }}">
                             @csrf
                             @method('PUT')
-                            <button onclick="return confirm('Вы уверены что хотите изменить?')" type="submit" class="btn btn-dange"
+                            <button onclick="return confirm('Вы уверены что хотите изменить?')" type="submit"
+                                    class="btn btn-dange"
                                     title="Удалить" data-toggle="tooltip">Изменить
                             </button>
 
